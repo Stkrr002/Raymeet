@@ -1,0 +1,48 @@
+
+{
+  "project_info": {
+    "project_number": "447803108173",
+    "project_id": "jitsidemo-376bd",
+    "storage_bucket": "jitsidemo-376bd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:447803108173:android:a147c7a43b39f5467a2504",
+        "android_client_info": {
+          "package_name": "com.example.jitsidemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "447803108173-udsc7h57r50oo30cphhdujhei5g5krq6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.jitsidemo",
+            "certificate_hash": "068ddf3d029729cc43ae1a033c6d0ae930f6ad39"
+          }
+        },
+        {
+          "client_id": "447803108173-2mvpncjooqcgn5j0mluepvequdlb2pr8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQcMtPJVeTLLJrdnx0UtI_2Igd_GGOdt0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "447803108173-2mvpncjooqcgn5j0mluepvequdlb2pr8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
