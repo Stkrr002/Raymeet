@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
+    id 'org.jetbrains.kotlin.android'
 }
 
 android {
@@ -42,4 +43,5 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:31.1.1')
     implementation 'com.google.firebase:firebase-auth'
     implementation ('org.jitsi.react:jitsi-meet-sdk:7.0.1') { transitive = true }
+    implementation "androidx.core:core-splashscreen:1.0.0-alpha02"
 }
