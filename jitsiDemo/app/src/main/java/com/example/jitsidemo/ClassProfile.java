@@ -2,7 +2,7 @@ package com.example.jitsidemo;
 
 public class ClassProfile {
     private String meetName;
-    private String time;
+    private String email;
 
     public String getmeetName() {
         return meetName;
@@ -12,16 +12,16 @@ public class ClassProfile {
         this.meetName = meetName;
     }
 
-    public String gettime() {
-        return time;
+    public String getemail() {
+        return email;
     }
 
-    public void settime(String time) {
-        this.time = time;
+    public void setemail(String email) {
+        this.email = email;
     }
 
-    ClassProfile(String meetName, String time){
-        this.time=time;
+    ClassProfile(String meetName, String email){
+        this.email=email;
         this.meetName=meetName;
     }
 }
