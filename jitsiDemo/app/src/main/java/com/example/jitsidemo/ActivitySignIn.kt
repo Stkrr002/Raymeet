@@ -1,23 +1,17 @@
 package com.example.jitsidemo
 
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.google.android.exoplayer2.util.Log
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import com.reactnativegooglesignin.RNGoogleSigninModule
-
 
 class ActivitySignIn : AppCompatActivity() {
     companion object{
@@ -27,26 +21,23 @@ class ActivitySignIn : AppCompatActivity() {
     private lateinit var mAuth : FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var signin : Button
+    private lateinit var  dashBoardIntent : Intent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mAuth = FirebaseAuth.getInstance()
         val user = mAuth.currentUser
-        val dashBoardIntent = Intent(this,MainActivity::class.java)
+          dashBoardIntent = Intent(this,MainActivity::class.java)
         installSplashScreen().apply {
            if(user!=null)
            {
-
+               finish()
                startActivity(dashBoardIntent)
+
            }
         }
         setContentView(R.layout.activity_sign_in)
-       signin = findViewById(R.id.signin)
-
-
-
-
-
+        signin = findViewById(R.id.signin)
                     val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                         .requestIdToken(getString(R.string.web_client_id))
                         .requestEmail()
@@ -74,7 +65,6 @@ class ActivitySignIn : AppCompatActivity() {
                     val account = task.getResult(ApiException::class.java)!!
                     firebaseAuthWithGoogle(account.idToken.toString())
                 }catch (e: ApiException){
-
                 }
             }
             else{
@@ -89,7 +79,7 @@ class ActivitySignIn : AppCompatActivity() {
             .addOnCompleteListener(this){
                 task->
                 if(task.isSuccessful){
-                    val dashBoardIntent = Intent(this,MainActivity::class.java)
+                    finish()
                     startActivity(dashBoardIntent)
                 }else{
 
