@@ -3,6 +3,8 @@ import static java.text.DateFormat.*;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +20,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import org.jitsi.meet.sdk.JitsiMeetActivity;
 import org.jitsi.meet.sdk.JitsiMeetConferenceOptions;
+import org.jitsi.meet.sdk.JitsiMeetUserInfo;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DateFormat;
@@ -30,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
   EditText edt ;
   Button btn;
   FirebaseAuth mAuth;
+  String userEmail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         String uid= user.getUid();
+        Uri imageUrl= user.getPhotoUrl();
+          userEmail=user.getEmail();
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -48,6 +55,11 @@ public class MainActivity extends AppCompatActivity {
                     JitsiMeetConferenceOptions options = null;
                     try {
                         uploadData();
+                        Bundle b= new Bundle();
+                        b.putString("displayName", "sumit kumar");
+                        b.putString("avatarURL",imageUrl.toString());
+                        b.putString("email",userEmail);
+                        JitsiMeetUserInfo userInfo= new JitsiMeetUserInfo(b);
                         options = new JitsiMeetConferenceOptions.Builder()
                                 .setServerURL(new URL("https://meet.jit.si"))
                                 .setRoom(url)
@@ -56,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
                                 .setVideoMuted(false)
                                 .setAudioOnly(false)
                                 .setConfigOverride("requireDisplayName", true)
+                                .setUserInfo(userInfo)
                                 .build();
                     } catch (MalformedURLException e) {
                         e.printStackTrace();
@@ -74,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         String date=sdf.format(new Date());
         sdf = new SimpleDateFormat("hh:mm:ss a", Locale.getDefault());
         String time = sdf.format(new Date());
-        ClassProfile ClassProfile = new ClassProfile(title,time);
+        ClassProfile ClassProfile = new ClassProfile(title,userEmail);
         FirebaseDatabase.getInstance().getReference("History").child(mAuth.getUid()).child(date).child(time)
                 .setValue(ClassProfile).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
