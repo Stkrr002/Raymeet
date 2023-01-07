@@ -61,12 +61,12 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String url=edt.getText().toString();
-                if(url!=null && url!=" ")
+                String meetName=edt.getText().toString();
+                if(meetName!=null && meetName!=" ")
                 {
+                    meetName+= generateUniqueCode(meetName)+uid.substring(0,3);
                     JitsiMeetConferenceOptions options = null;
                     try {
-                        uploadData();
                         Bundle b= new Bundle();
                         b.putString("displayName", "sumit kumar");
                         b.putString("avatarURL",imageUrl.toString());
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                         JitsiMeetUserInfo userInfo= new JitsiMeetUserInfo(b);
                         options = new JitsiMeetConferenceOptions.Builder()
                                 .setServerURL(new URL("https://meet.jit.si"))
-                                .setRoom(url)
+                                .setRoom(meetName)
                                 .setFeatureFlag("welcomepage.enabled", false)
                                 .setUserInfo(userInfo)
                                 .build();
@@ -87,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -144,17 +145,28 @@ public class MainActivity extends AppCompatActivity {
             switch (event.getType()) {
                 case CONFERENCE_JOINED:
                     Timber.i("Conference Joined with url%s", event.getData().get("url"));
+                    uploadData();
                     break;
                 case PARTICIPANT_JOINED:
                     Timber.i("Participant joined%s", event.getData().get("name"));
                     break;
                 case READY_TO_CLOSE:
-                    Toast.makeText(this, "kaat rha h", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "meet ended", Toast.LENGTH_SHORT).show();
                     break;
                 case AUDIO_MUTED_CHANGED:
                     Toast.makeText(this, "mic changed", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+    private String generateUniqueCode(String meetName) {
+        int max = 1000;
+        int min = 1;
+        int range = max - min + 1;
+
+        // generate random numbers within 1 to 10
+            int rand = (int) (Math.random() * range) + min;
+            return String.valueOf(rand);
+
     }
 
     // Example for sending actions to JitsiMeetSDK
