@@ -27,7 +27,7 @@ class ActivitySignIn : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mAuth = FirebaseAuth.getInstance()
         val user = mAuth.currentUser
-          dashBoardIntent = Intent(this,MainActivity::class.java)
+          dashBoardIntent = Intent(this,ActivityCreateOrJoin::class.java)
         installSplashScreen().apply {
            if(user!=null)
            {
