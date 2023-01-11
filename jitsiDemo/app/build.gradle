@@ -46,4 +46,5 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth'
     implementation ('org.jitsi.react:jitsi-meet-sdk:7.0.1') { transitive = true }
     implementation "androidx.core:core-splashscreen:1.0.0-alpha02"
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
 }

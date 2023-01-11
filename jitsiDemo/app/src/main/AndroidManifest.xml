@@ -16,11 +16,17 @@
         android:theme="@style/Theme.App.Starting"
         tools:targetApi="31">
         <activity
+            android:name=".ActivityHistory"
+            android:theme="@style/Theme.JitsiDemo"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ActivityCreateOrJoin"
             android:exported="false"
             android:theme="@style/Theme.JitsiDemo">
-
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

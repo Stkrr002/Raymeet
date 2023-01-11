@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class ActivityCreateOrJoin extends AppCompatActivity {
- Button btnCreate,btnJoin;
+ Button btnCreate,btnJoin,btnHistory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +16,7 @@ public class ActivityCreateOrJoin extends AppCompatActivity {
         setContentView(R.layout.activity_create_or_join);
         btnCreate=findViewById(R.id.btnCreate);
         btnJoin=findViewById(R.id.btnJoin);
+        btnHistory=findViewById(R.id.btnHistory);
 
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,6 +38,13 @@ public class ActivityCreateOrJoin extends AppCompatActivity {
 
 
 
+            }
+        });
+        btnHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i= new Intent(getApplicationContext(),ActivityHistory.class);
+                startActivity(i);
             }
         });
 

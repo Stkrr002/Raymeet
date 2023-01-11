@@ -109,8 +109,9 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(action.equalsIgnoreCase("join"))
-                meetName=edt.getText().toString();
+                if(action.equalsIgnoreCase("join")) {
+                    meetName = edt.getText().toString();
+                }
                     JitsiMeetConferenceOptions options = null;
                     Bundle b= new Bundle();
                     b.putString("displayName", "sumit kumar");
