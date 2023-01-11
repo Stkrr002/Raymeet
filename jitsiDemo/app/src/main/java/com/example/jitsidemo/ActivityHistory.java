@@ -39,14 +39,18 @@ public class ActivityHistory extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 dataList.clear();
                 ClassHistory classHistory;
+                ClassTime classTime;
                 String date=null;
-                ArrayList<String> timeList;
+                ArrayList<ClassTime> timeList;
                 for (DataSnapshot itemSnapshot: snapshot.getChildren()) {
                     date = itemSnapshot.getKey();
                     timeList=new ArrayList<>();
                     for (DataSnapshot it : itemSnapshot.getChildren()){
                         String time = it.getKey().toString();
-                        timeList.add(time);
+                        ClassProfile classProfile= it.getValue(ClassProfile.class);
+                        String email=classProfile.getemail(),meetName=classProfile.getmeetName();
+                        classTime= new ClassTime(time,meetName,email);
+                        timeList.add(classTime);
                     //  dataClass.setmeetName(itemSnapshot.getKey());
 
                     }

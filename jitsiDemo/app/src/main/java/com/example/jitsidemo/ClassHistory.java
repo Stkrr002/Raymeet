@@ -4,20 +4,10 @@ import java.util.ArrayList;
 
 public class ClassHistory {
     String dates,time,meetName,email;
-    ArrayList<String> timeList;
+    ArrayList<ClassTime> timeList;
 
-    public ClassHistory(String dates) {
-        this.dates = dates;
-    }
 
-    public ClassHistory(String dates, String time, String meetName, String email) {
-        this.dates = dates;
-        this.time = time;
-        this.meetName = meetName;
-        this.email = email;
-    }
-
-    public ClassHistory(String dates, ArrayList<String> timeList) {
+    public ClassHistory(String dates, ArrayList<ClassTime> timeList) {
         this.dates = dates;
         this.timeList = timeList;
     }
@@ -54,11 +44,11 @@ public class ClassHistory {
         this.email = email;
     }
 
-    public ArrayList<String> getTimeList() {
+    public ArrayList<ClassTime> getTimeList() {
         return timeList;
     }
 
-    public void setTimeList(ArrayList<String> timeList) {
+    public void setTimeList(ArrayList<ClassTime> timeList) {
         this.timeList = timeList;
     }
 }

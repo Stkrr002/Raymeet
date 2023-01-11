@@ -16,9 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterTime extends RecyclerView.Adapter<AdapterTime.TimeViewHolder> {
-    private ArrayList<String> timeList;
+    private ArrayList<ClassTime> timeList;
 
-    public AdapterTime(ArrayList<String> timeList) {
+    public AdapterTime(ArrayList<ClassTime> timeList) {
         this.timeList = timeList;
 
     }
@@ -36,7 +36,9 @@ public class AdapterTime extends RecyclerView.Adapter<AdapterTime.TimeViewHolder
     @Override
     public void onBindViewHolder(@NonNull TimeViewHolder holder, int position) {
 
-        holder.tvTime.setText(timeList.get(position));
+        holder.tvTime.setText(timeList.get(position).getTime());
+        holder.tvEmail.setText(timeList.get(position).getEmail());
+        holder.tvMeetName.setText(timeList.get(position).getMeetName());
 
 
     }
@@ -47,11 +49,13 @@ public class AdapterTime extends RecyclerView.Adapter<AdapterTime.TimeViewHolder
     }
 
     public class TimeViewHolder extends RecyclerView.ViewHolder {
-        TextView tvTime;
+        TextView tvTime,tvEmail,tvMeetName;
 
         public TimeViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTime=itemView.findViewById(R.id.tv_time);
+            tvEmail=itemView.findViewById(R.id.tv_email);
+            tvMeetName=itemView.findViewById(R.id.tv_meet_name);
 
         }
     }

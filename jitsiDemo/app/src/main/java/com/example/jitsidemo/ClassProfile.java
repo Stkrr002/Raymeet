@@ -4,6 +4,9 @@ public class ClassProfile {
     private String meetName;
     private String email;
 
+    public ClassProfile() {
+    }
+
     public String getmeetName() {
         return meetName;
     }
